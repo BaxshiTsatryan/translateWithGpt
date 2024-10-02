@@ -9,7 +9,7 @@ async function getTranslatedText(text, targetLanguage) {
             model: "gpt-4o",
             messages: [{
                 role: "user",
-                content: `Переводи "${text}" на ${targetLanguage} язык без лишних текстов, только английский перевод`
+                content: `Translate ‘${text}’ into ${targetLanguage} language with no extra text, only English translation`
             }],
         });
         return res.choices[0].message.content;
@@ -33,19 +33,19 @@ async function translateTexts(files) {
         for (const key in texts) {
             if (texts.hasOwnProperty(key)) {
                 const originalText = texts[key];
-                console.log(`Перевод текста с ключом ${key} в файле ${file}...`);
+                console.log(`Translating text with key ${key} in file ${file}...`);
 
-                const translatedToRu = await getTranslatedText(originalText, "русский");
-                const translatedToSp = await getTranslatedText(originalText, "испанский");
-                const translatedToPo = await getTranslatedText(originalText, "португальский");
-                const translatedToGe = await getTranslatedText(originalText, "немецкий");
-                const translatedToFr = await getTranslatedText(originalText, "французский");
+                const translatedToRu = await getTranslatedText(originalText, "russian");
+                const translatedToSp = await getTranslatedText(originalText, "spanish");
+                const translatedToPo = await getTranslatedText(originalText, "portuguese");
+                const translatedToGe = await getTranslatedText(originalText, "german");
+                const translatedToFr = await getTranslatedText(originalText, "french");
 
-                translatedRu[key] = translatedToRu || "Ошибка перевода";
-                translatedSp[key] = translatedToSp || "Ошибка перевода";
-                translatedPo[key] = translatedToPo || "Ошибка перевода";
-                translatedGe[key] = translatedToGe || "Ошибка перевода";
-                translatedFr[key] = translatedToFr || "Ошибка перевода";
+                translatedRu[key] = translatedToRu || "Translation error";
+                translatedSp[key] = translatedToSp || "Translation error";
+                translatedPo[key] = translatedToPo || "Translation error";
+                translatedGe[key] = translatedToGe || "Translation error";
+                translatedFr[key] = translatedToFr || "Translation error";
             }
         }
 
